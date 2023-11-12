@@ -1,6 +1,6 @@
 import pg from "pg";
 import dotenv from "dotenv"
-import dbConfig from "./dbConfig";
+import dbConfig from "./dbConfig.js";
 
 dotenv.config();
 
