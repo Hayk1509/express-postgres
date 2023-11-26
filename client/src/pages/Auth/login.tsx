@@ -13,12 +13,12 @@ import { useCallback, useState } from "react";
 import AuthLayout from "../../shared/layouts/auth";
 import React from 'react'
 import useEmptyLocalStorage from "../../shared/hooks/useEmptyLocalStorage";
-import useFormikValidation from "../../shared/hooks/useValidation";
+import useLoginValidation from "../../shared/hooks/useLoginValidation";
 
 const Login = () => {
   const [method, setMethod] = useState("email");
   useEmptyLocalStorage();
-  const formik = useFormikValidation()
+  const formik = useLoginValidation()
 
   const handleMethodChange = useCallback((value: string) => {
     setMethod(value);

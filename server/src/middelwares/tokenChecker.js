@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import { generateAccessToken, verifyToken } from "../utilitis/tokenManager.js";
+import { verifyToken } from "../utilitis/tokenManager.js";
 
 dotenv.config();
 
@@ -10,6 +10,8 @@ const authenticate = (req, res, next) => {
   }
   try {
     const decoded = verifyToken(accessToken);
+    console.log(decoded)
+    res.body.email = decoded.email;
     next();
   } catch (error) {
     return res.status(401).send("Access Denied. No token provided.");

@@ -1,17 +1,18 @@
 import * as Yup from "yup";
 
-import { loginUser } from "../servieces/loginUser";
+import { registrationUser } from "../servieces/registration.thunk";
 import { useAppDispatch } from "../../store/hooks";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 
-const useFormikValidation = () => {
+const useRegisterValidation = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
-          email: "hayk.saruxanyan@mail.ru",
-          password: "Norakert.1998",
+          email: "",
+          password: "",
+          name: '',
           submit: null,
         },
         validationSchema: Yup.object({
@@ -20,13 +21,15 @@ const useFormikValidation = () => {
             .max(255)
             .required("Email is required"),
           password: Yup.string().max(255).required("Password is required"),
+          name:Yup.string().matches(/^[a-zA-Z]*$/, 'Only letters are allowed').required('Name is required'),
         }),
         onSubmit: async (values, helpers) => {
           try {
             await dispatch(
-              loginUser({
+              registrationUser({
                 email: values.email,
                 password: values.password,
+                name:values.name,
               })
             );
             navigate("/");
@@ -40,4 +43,4 @@ const useFormikValidation = () => {
       return formik
 }
 
-export default useFormikValidation;
+export default useRegisterValidation;

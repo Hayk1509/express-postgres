@@ -1,7 +1,6 @@
-import express from "express";
-import router from "./src/routes/studentsRoutes.js";
-import registerRouter from "./src/routes/registerRoutes.js";
 import cors from 'cors';
+import express from "express";
+import userRoutes from './src/routes/userRoutes.js';
 
 const app = express();
 
@@ -11,7 +10,6 @@ app.use(cors({
 }));
 app.use(express.json());
 
-app.use("/api/v1/", registerRouter);
-app.use("/api/v1/students", router);
+app.use("/api/v1/", userRoutes);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
