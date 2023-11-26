@@ -25,3 +25,19 @@ export const StyledStackWrapper = styled(Stack)(() => ({
   justifyContent: "space-between",
   minHeight: TOP_NAV_HEIGHT,
 }));
+
+export const LayoutRoot = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flex: '1 1 auto',
+  maxWidth: '100%',
+  [theme.breakpoints.up('lg')]: {
+    paddingLeft: SIDE_NAV_WIDTH
+  }
+}));
+
+export const LayoutContainer = styled('div')({
+  display: 'flex',
+  flex: '1 1 auto',
+  flexDirection: 'column',
+  width: '100%'
+});

@@ -9,9 +9,9 @@ import {
 } from "@mui/material";
 
 import ChevronUpDownIcon from "@heroicons/react/24/solid/ChevronUpDownIcon";
-import { Logo } from "../../components/Logo";
+import { Logo } from "../../../components/Logo";
 import React from "react";
-import { Scrollbar } from "../../components/Scrollbar";
+import { Scrollbar } from "../../../components/Scrollbar";
 import { SideNavItem } from "./side-nav-item";
 import { items } from "./config";
 

@@ -9,12 +9,13 @@ import {
 } from '@mui/material';
 import { StyledHeader, StyledStackWrapper } from './StyledNavBar';
 
-import { AccountPopover } from '../account-popover';
+import { AccountPopover } from './account-popover';
 import Bars3Icon from '@heroicons/react/24/solid/Bars3Icon';
 import BellIcon from '@heroicons/react/24/solid/BellIcon';
 import MagnifyingGlassIcon from '@heroicons/react/24/solid/MagnifyingGlassIcon';
+import React from 'react';
 import UsersIcon from '@heroicons/react/24/solid/UsersIcon';
-import { usePopover } from '../../../hooks/use-popover';
+import { usePopover } from '../../../hooks/usePopover';
 
 export const TopNav = (props:any) => {
   const { onNavOpen } = props;
@@ -27,9 +28,7 @@ export const TopNav = (props:any) => {
         <StyledStackWrapper
           direction="row"
           spacing={2}
-          sx={{
-            px: 2
-          }}
+          px={2}
         >
           <Stack
             alignItems="center"
@@ -84,7 +83,7 @@ export const TopNav = (props:any) => {
                 height: 40,
                 width: 40
               }}
-              src="/assets/avatars/avatar-anika-visser.png"
+              src="/shared/assets/avatars/avatar-anika-visser.png"
             />
           </Stack>
         </StyledStackWrapper>

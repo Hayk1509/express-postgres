@@ -1,4 +1,6 @@
-import { Layout } from "../../shared/layouts/navBar/navBar"
+import { Layout } from "../../shared/layouts/navBar"
+import React from 'react';
+
 export const Dashboard = ()=>{
-    return <Layout>s</Layout>
+    return <Layout><div style={{height:'200vh'}}>ss</div></Layout>
 }

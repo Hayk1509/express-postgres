@@ -3,5 +3,5 @@ export function setDataToLocalStorage(key: string, value: string): void {
 }
 
 export function getDataFromLocalStorage(key: string): string| '' {
-  return localStorage.getItem(key)! && '';
+  return localStorage.getItem(key)! || '';
 }

@@ -1,5 +1,6 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosInstance } from "../../api/axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { setDataToLocalStorage } from "../utils/localStorage";
 
 interface User {
     email:string;
@@ -7,7 +8,7 @@ interface User {
 }
 export const loginUser = createAsyncThunk<User, User>('user/loginUser', async (user: User) => {
     const response = await AxiosInstance.post<any>(`/login`,user);
-    const value = response.data.authorization
-    localStorage.setItem('authorization', value)
+    const value = response.data.authorization;
+    setDataToLocalStorage('authorization',value)
     return response.data;
   });

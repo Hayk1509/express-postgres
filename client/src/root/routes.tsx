@@ -1,6 +1,7 @@
 import { Dashboard } from "../pages/Main/Dashboard";
 import ErrorPage from "../pages/ErrorPage";
 import Login from "../pages/Auth/login";
+import React from 'react'
 import Register from "../pages/Auth/register";
 import { RouteObject } from "react-router-dom";
 import RoutesEnum from "../shared/enums/routes.enum";

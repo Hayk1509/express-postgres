@@ -1,6 +1,3 @@
-import { useCallback, useState } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import {
   Box,
   Button,
@@ -11,38 +8,17 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useCallback, useState } from "react";
+
 import AuthLayout from "../../shared/layouts/auth";
-import { useAppDispatch } from "../../store/hooks";
-// import { fetchUser } from "../../shared/servieces/getUsers";
-import { loginUser } from "../../shared/servieces/loginUser";
+import React from 'react'
+import useEmptyLocalStorage from "../../shared/hooks/useEmptyLocalStorage";
+import useFormikValidation from "../../shared/hooks/useValidation";
 
 const Login = () => {
-  const dispatch = useAppDispatch();
   const [method, setMethod] = useState("email");
-  const formik = useFormik({
-    initialValues: {
-      email: "hayk.saruxanyan@mail.ru",
-      password: "Norakert.1998",
-      submit: null,
-    },
-    validationSchema: Yup.object({
-      email: Yup.string()
-        .email("Must be a valid email")
-        .max(255)
-        .required("Email is required"),
-      password: Yup.string().max(255).required("Password is required"),
-    }),
-    onSubmit: async (values, helpers) => {
-      console.log(values, helpers);
-      try {
-        await dispatch(loginUser({ email: values.email, password: values.password }));
-      } catch (err: any) {
-        helpers.setStatus({ success: false });
-        helpers.setErrors({ submit: err.message });
-        helpers.setSubmitting(false);
-      }
-    },
-  });
+  useEmptyLocalStorage();
+  const formik = useFormikValidation()
 
   const handleMethodChange = useCallback((value: string) => {
     setMethod(value);
@@ -51,7 +27,7 @@ const Login = () => {
   return (
     <AuthLayout>
       <Box>
-        <title>Login | Devias Kit</title>
+        <title>Login | Hayk Kit</title>
       </Box>
       <Box
         sx={{
@@ -76,7 +52,6 @@ const Login = () => {
               <Typography color="text.secondary" variant="body2">
                 Don&apos;t have an account? &nbsp;
                 <Link
-                  //   component={NextLink}
                   href="/register"
                   underline="hover"
                   variant="subtitle2"
@@ -86,7 +61,10 @@ const Login = () => {
               </Typography>
             </Stack>
             <Tabs
-              onChange={() => handleMethodChange("email")}
+              onChange={() => {
+                const newValue = method === 'email' ? 'phoneNumber' : 'email'
+                handleMethodChange(newValue)}
+              }
               sx={{ mb: 3 }}
               value={method}
             >
