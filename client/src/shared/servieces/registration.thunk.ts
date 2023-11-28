@@ -1,17 +1,18 @@
-import { AxiosInstance } from "../../api/axios";
-import { IUser } from "../types/User.types";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { setDataToLocalStorage } from "../utils/localStorage";
+import { AppDispatch } from "../../store/store";
+import { UserLoginApi } from "../../api/UserLoginApi";
+import { setUserData } from "../../store/authSlice/authSlice";
 
-interface RequestUser {
-    email:string,
-    password:string
-    name:string
+export interface RequestUser {
+  email: string;
+  password: string;
+  name: string;
 }
 
-export const registrationUser = createAsyncThunk<IUser,RequestUser>('user/registrUser', async (user: RequestUser) => {
-    const response = await AxiosInstance.post<any>(`/register`,user);
-    const value = response.data.authorization;
-    setDataToLocalStorage('authorization',value)
-    return response.data;
-  });
+export const registrationUser = (user: RequestUser) => {
+  return async (dispatch: AppDispatch) => {
+    const { data } = await UserLoginApi.registrUser(user);
+    if (data) {
+      dispatch(setUserData(data));
+    }
+  };
+};

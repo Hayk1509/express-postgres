@@ -10,7 +10,6 @@ const authenticate = (req, res, next) => {
   }
   try {
     const decoded = verifyToken(accessToken);
-    console.log(decoded)
     res.body.email = decoded.email;
     next();
   } catch (error) {
